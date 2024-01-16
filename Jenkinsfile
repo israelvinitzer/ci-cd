@@ -19,5 +19,15 @@ pipeline {
                 git branch:'main', credentialsId: 'github',url: "https://github.com/israelvinitzer/ci-cd"
             }
         }
+        stage('Build Applicaton') {
+            steps {
+                sh "mvn clean package"
+            }
+        }
+        stage('Test Application') {
+            steps {
+                mvn "test"
+            }
+        }
     }
 }
